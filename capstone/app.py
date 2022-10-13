@@ -49,8 +49,7 @@ def login():
 
         conn = get_db()
         cur = conn.cursor()
-        user = cur.execute('SELECT * FROM user WHERE userid = ? and userpasswd = ?', (userid, userpasswd)).fetchone()
-        
+        user = cur.execute("SELECT * FROM user WHERE userid = '%s' and userpasswd = '%s'"%(userid, userpasswd)).fetchone()        
         if user:
             session['userid'] = user['userid']
             session['userpasswd'] = user['userpasswd']
