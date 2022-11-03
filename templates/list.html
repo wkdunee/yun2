@@ -129,7 +129,7 @@
     <body class="vsc-initialized">
         <nav class="navbar navbar-expand-lg navbar-white bg-white">
             <div class="container-fluid">
-                <a class="navbar-brand text-warning" href="#"><h3>Joonggoworld</h3></a>
+                <a class="navbar-brand text-warning" href="/main_success"><h3>Joonggoworld</h3></a>
                 <div class="collapse navbar-collapse" id="navbarColor02">
                     <ul class="navbar-nav justify-content-end ml-auto">
                         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -160,35 +160,62 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
             <br>
-            <h1>글쓰기</h1><br>
-            <form method="POST">
-                <div class="container">
-                    <div class="col-md-6 form group">
-                        <label for="writer">작성자</label>
-                        <input id="writer" class="form-control" placeholder="작성자를 입력하세요" name="writer" required=""><br>
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <label for="title">제목</label>
-                        <input type="text" id="title" class="form-control" placeholder="제목을 입력하세요" name="title" required="">
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <label for="context">내용</label>
-                        {%if rows%}
-                        <textarea disabled id="context" class="form-control" rows="5" placeholder="내용을 입력하세요" name="context" required=""></textarea>
-                        {%else%}
-                        <textarea id="context" class="form-control" rows="5" placeholder="내용을 입력하세요" name="context" required=""></textarea>
-                        {%endif%}
-                    </div> <!-- {%if not userid%}disabled{%endif%}-->
-                    <div class="col-md-6 form-group">
-                        <label for="file">파일업로드</label>
-                        <input type="file" class="form-control" name="file" id="file" value="">
-                    </div>
-                    <input type="checkbox" name="secret" id="secre" value="비밀글"> 비밀글 설정<br><br>
-                    <button type="submit" class="btn btn-outline-success">Upload</button>   
-                </div>
-            </form>
+            <h1 class="text-center">게시판</a></h1>
+            <br>
+            <br>
+            
+            <table class="table table-hover table-striped text-center" style="border: 1px solid;">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>등록일자</th>
+                        <th>조회수</th>
+                    </tr>
+                </thead> 
+                <tbody>
+                    {% for data in rows %}
+                    <tr>
+                        <td>{{ data.no }}</td>
+                        <td>{{ data.title }}</td>
+                        <td>{{ data.writer }}</td>
+                        <td>{{ data.regdate }}</td>
+                        <td>{{ data.count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <hr>
+            <div>
+                <ul class="pagination" justify-content="center">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#">&laquo;</a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">2</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">3</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">4</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">5</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">&raquo;</a>
+                  </li>
+                </ul>
+              </div>
+            <a class="btn btn-outline-info float-right" href="/write" >글쓰기</a>
+
         </div>
     </body>
 </html>

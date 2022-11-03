@@ -1,0 +1,153 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/assets/bulma.min.css">
+    <title>Vuln Python App</title>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+  <!-- <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div> -->
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/">
+        Home
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          SQL Injection
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="/sql-injection/login">
+            Login
+          </a>
+          <a class="navbar-item" href="/sql-injection/search?q=">
+            Search
+          </a>
+        </div>
+      </div>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          XSS
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="/xss/reflected?search=">
+            Reflected
+          </a>
+          <a class="navbar-item" href="/xss/stored">
+            Stored
+          </a>
+          <!-- <hr class="navbar-divider">
+          <a class="navbar-item">
+            Report an issue
+          </a> -->
+        </div>
+      </div>
+
+      <a class="navbar-item" href="/file-upload">
+        File Upload
+      </a>
+
+      <a class="navbar-item" href="/ssrf">
+        SSRF
+      </a>
+
+      <a class="navbar-item" href="/path-traversal">
+        Path Traversal
+      </a>
+
+      <a class="navbar-item" href="/idor/login">
+        IDOR
+      </a>
+
+      <a class="navbar-item" href="/iframe-injection?page=/static/pages/about.html">
+        IFrame Injection
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-light" onclick="resetDatabase()" id="btnResetDatabase">
+            Reset Database
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+    <section class="section">
+        <div class="container">
+            
+
+            {% extends "base.html" %}
+            {% block content %}
+            
+            <section class="section">
+              <h1 class="title">XSS - Stored</h1>
+            
+                <div class="block">
+            
+              <h2 class="subtitle">Send Message</h2>
+              <form action="/xss/stored" method="post">
+                <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                      <input class="input" type="text" placeholder="Text input" id="message" name="message" required minlength="3">
+                    </div>
+                  </div>
+                  <div class="field is-grouped">
+                    <div class="control">
+                      <button class="button is-link" type="submit">Submit</button>
+                    </div>
+                  </div>
+              </form>
+            </div>
+            
+            <div class="block">
+            
+              <h2 class="subtitle">Messages</h2>
+              <div class="content">
+                {% autoescape false %}
+                    {% for msg in messages %}
+                        <article class="message">
+                          <div class="message-body">
+                            {{ msg }}
+                          </div>
+                        </article>
+                    {% endfor %}
+                {% endautoescape %}
+              </div>
+            </div>
+            </section>
+            {% endblock %}
+
+    <script src="/static/assets/axios.min.js"></script>
+    <script src="/static/assets/global.js"></script>
+    <script>
+        // var googleCaptchaKey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
+        // var googleCatpchaSecretKey = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
+
+        var googleCaptchaKey = '';
+        var googleCatpchaSecretKey = '';
+
+    </script>
+
+    
+
+</body></html>
